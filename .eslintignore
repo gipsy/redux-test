@@ -1,4 +1,4 @@
-webpack.config.*
-
-src/server.js
-src/mock/**/*.js
+coverage/**
+node_modules/**
+dist/**
+src/index.html
