@@ -12,6 +12,28 @@ class SearchResults extends Component {
     handleChange(values) {
       console.log('filter changed')
       console.log(values)
+      switch (values) {
+        case 'matches_results':
+          return this.props.fetchData('http://worldcup.sfg.io/matches')
+
+        case 'matches_today':
+          return this.props.fetchData('http://worldcup.sfg.io/matches/today')
+
+        case 'matches_current':
+          return this.props.fetchData('http://worldcup.sfg.io/matches/current')
+
+        case 'teams':
+          return this.props.fetchData('http://worldcup.sfg.io/teams')
+
+        case 'teams_group':
+          return this.props.fetchData('http://worldcup.sfg.io/teams/group_results')
+
+        case 'teams_results':
+          return this.props.fetchData('http://worldcup.sfg.io/teams/results')
+
+        default:
+          return this.props.fetchData('http://worldcup.sfg.io/matches')
+      }
     }
     handleUpdate(form) {
       console.log('filter updated')
