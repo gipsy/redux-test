@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import locationReducer from './location'
 import progress from 'react-redux-progress/reducer'
 import { items, itemsHasErrored, itemsIsLoading } from './items'
+import { reducer as formReducer } from 'redux-form'
 
 export const makeRootReducer = (asyncReducers) => {
     return combineReducers({
@@ -9,6 +10,7 @@ export const makeRootReducer = (asyncReducers) => {
         items,
         itemsHasErrored,
         itemsIsLoading,
+        form: formReducer,
         location: locationReducer,
         ...asyncReducers
     })
