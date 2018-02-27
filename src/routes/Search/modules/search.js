@@ -19,7 +19,39 @@ export function itemsFetchDataSuccess(items) {
     };
 }
 
-export function itemsFetchData(url) {
+export function endpointUpdate(endpoint) {
+    return {
+        type: 'ENDPOINT_UPDATE',
+        endpoint
+    }
+}
+
+export function itemsFetchData(endpoint) {
+    let url = ''
+    console.log(endpoint)
+    switch (endpoint) {
+      case 'matches_all':
+          url = 'http://worldcup.sfg.io/matches'
+
+      case 'matches_today':
+          url = 'http://worldcup.sfg.io/matches/today'
+
+      case 'matches_current':
+          url = 'http://worldcup.sfg.io/matches/current'
+
+      case 'teams':
+          url = 'http://worldcup.sfg.io/teams'
+
+      case 'teams_group':
+          url = 'http://worldcup.sfg.io/group_results'
+
+      case 'teams_results':
+          url = 'http://worldcup.sfg.io/teams/results'
+
+      default:
+          url = 'http://worldcup.sfg.io/matches'
+    }
+
     return (dispatch) => {
         dispatch(itemsIsLoading(true));
 

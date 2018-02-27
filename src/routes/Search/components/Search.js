@@ -5,52 +5,24 @@ import ProgressBarProvider from 'react-redux-progress'
 import {Form, FormGroup, Label, Input } from 'reactstrap'
 
 class SearchResults extends Component {
+    state = {
+      endpoint: this.props.endpoint,
+    }
+
     componentDidMount() {
-        this.props.fetchData('http://worldcup.sfg.io/matches')
+        this.props.fetchData(this.state.endpoint)
     }
 
-    handleChange(values) {
-      console.log('filter changed')
-      console.log(values)
-      switch (values) {
-        case 'matches_results':
-          return this.props.fetchData('http://worldcup.sfg.io/matches')
-
-        case 'matches_today':
-          return this.props.fetchData('http://worldcup.sfg.io/matches/today')
-
-        case 'matches_current':
-          return this.props.fetchData('http://worldcup.sfg.io/matches/current')
-
-        case 'teams':
-          return this.props.fetchData('http://worldcup.sfg.io/teams')
-
-        case 'teams_group':
-          return this.props.fetchData('http://worldcup.sfg.io/teams/group_results')
-
-        case 'teams_results':
-          return this.props.fetchData('http://worldcup.sfg.io/teams/results')
-
-        default:
-          return this.props.fetchData('http://worldcup.sfg.io/matches')
-      }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.endpoint !== this.props.endpoint) {
+        }
     }
 
-    handleUpdate(form) {
-      console.log('filter updated')
-      console.log(form)
-    }
-
-    handleSubmit(values) {
-      console.log('filter submitted')
-      console.log(values)
+    handleChange(value) {
+      this.setState({endpoint: value})
     }
 
     render() {
-       const initialFilterState = {
-          endpoint: 'matches_results',
-          fifa_code: 'USA',
-        };
         const { isLoading, hasErrored, handleSubmit, onSubmit } = this.props
 
         if (this.props.hasErrored) {
@@ -71,25 +43,74 @@ class SearchResults extends Component {
                     <legend>Radio Buttons</legend>
                     <FormGroup check>
                         <Label check>
-                            <Input type="radio" name="endpoint" />{' '}
-                            All matches
+                          <Input
+                            type="radio"
+                            name="endpoint"
+                            value="matches_all"
+                            checked={this.state.endpoint === 'matches_all'}
+                            onChange={(value) => this.handleChange(value)}
+                          />{' '}
+                          All matches
                         </Label>
                     </FormGroup>
                     <FormGroup check>
                         <Label check>
-                            <Input type="radio" name="endpoint" checked={true}/>{' '}
-                            Today's matches
+                            <Input
+                              type="radio"
+                              name="endpoint"
+                              value="matches_today"
+                              checked={this.state.endpoint === 'matches_today'}
+                              onChange={(value) => this.handleChange(value)}
+                            />{' '}
+                              Today's matches
                         </Label>
                     </FormGroup>
-                    <FormGroup check disabled>
+                    <FormGroup check>
                         <Label check>
-                            <Input type="radio" name="endpoint" disabled />{' '}
-                            Current mathes
+                            <Input
+                              type="radio"
+                              name="endpoint"
+                              value="matches_current"
+                              checked={this.state.endpoint === 'matches_current'}
+                              onChange={(value) => this.handleChange(value)}
+                            />{' '}
+                            Current matches
+                        </Label>
+                    </FormGroup>
+                    <FormGroup check>
+                        <Label check>
+                            <Input
+                              type="radio"
+                              name="endpoint"
+                              value="teams_result"
+                              checked={this.state.endpoint === 'teams_result'}
+                              onChange={(value) => this.handleChange(value)}
+                            />{' '}
+                            Teams Results
+                        </Label>
+                    </FormGroup>
+                    <FormGroup check>
+                        <Label check>
+                            <Input
+                              type="radio"
+                              name="endpoint"
+                              value="teams_group_result"
+                              checked={this.state.endpoint === 'teams_group_result'}
+                              onChange={(value) => this.handleChange(value)}
+                            />{' '}
+                            Teams Group Result
                         </Label>
                     </FormGroup>
                 </FormGroup>
+                <ul>
+                    {this.props.items.map((item) => (
+                        <li key={uuidv1()}>
+                            {item.home_team.country}
+                        </li>
+                    ))}
+                </ul>
             </div>
-        );
+        )
     }
 }
 
@@ -98,6 +119,7 @@ SearchResults.propTypes = {
     items: PropTypes.array.isRequired,
     hasErrored: PropTypes.bool.isRequired,
     isLoading: PropTypes.bool.isRequired,
+    endpoint: PropTypes.string.isRequired
 }
 
 export default SearchResults

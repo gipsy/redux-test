@@ -5,17 +5,17 @@ import SearchResults from '../components/Search'
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchData: (url) => dispatch(itemsFetchData(url))
-    };
-};
+        fetchData: (endpoint) => dispatch(itemsFetchData(endpoint)),
+    }
+}
 
 const mapStateToProps = (state) => {
     return {
         items: state.items,
         hasErrored: state.itemsHasErrored,
         isLoading: state.itemsIsLoading,
-        isProgressActive: state.progress.isActive,
-    };
-};
+        endpoint: 'test'
+    }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResults)
