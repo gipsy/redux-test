@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import uuidv1 from 'uuid'
 import ProgressBarProvider from 'react-redux-progress'
-import { LocalForm, Control } from 'react-redux-form';
+import {Form, FormGroup, Label, Input } from 'reactstrap'
 
 class SearchResults extends Component {
     componentDidMount() {
@@ -35,10 +35,12 @@ class SearchResults extends Component {
           return this.props.fetchData('http://worldcup.sfg.io/matches')
       }
     }
+
     handleUpdate(form) {
       console.log('filter updated')
       console.log(form)
     }
+
     handleSubmit(values) {
       console.log('filter submitted')
       console.log(values)
@@ -65,28 +67,27 @@ class SearchResults extends Component {
                     isActive={isLoading}
                     className="progress-bar"
                 />
-                <LocalForm
-                    onUpdate={(form) => this.handleUpdate(form)}
-                    onChange={(values) => this.handleChange(values)}
-                    onSubmit={(values) => this.handleSubmit(values)}
-                >
-                    <div className="field">
-                        <label>Worldcup Filter results</label>
-                        <label><Control.radio model=".endpoint" value="matches_results" /> All Matches</label>
-                        <label><Control.radio model=".endpoint" value="matches_today" /> Today Matches</label>
-                        <label><Control.radio model=".endpoint" value="matches_current" /> Current Matches</label>
-                        <label><Control.radio model=".endpoint" value="teams" /> All Teams</label>
-                        <label><Control.radio model=".endpoint" value="teams_group" /> Group Teams</label>
-                        <label><Control.radio model=".endpoint" value="teams_results" /> Group Teams Results</label>
-                    </div>
-                </LocalForm>
-                <ul>
-                    {this.props.items.map((item) => (
-                        <li key={uuidv1()}>
-                            {item.home_team.country}
-                        </li>
-                    ))}
-                </ul>
+                <FormGroup tag="fieldset">
+                    <legend>Radio Buttons</legend>
+                    <FormGroup check>
+                        <Label check>
+                            <Input type="radio" name="endpoint" />{' '}
+                            All matches
+                        </Label>
+                    </FormGroup>
+                    <FormGroup check>
+                        <Label check>
+                            <Input type="radio" name="endpoint" checked={true}/>{' '}
+                            Today's matches
+                        </Label>
+                    </FormGroup>
+                    <FormGroup check disabled>
+                        <Label check>
+                            <Input type="radio" name="endpoint" disabled />{' '}
+                            Current mathes
+                        </Label>
+                    </FormGroup>
+                </FormGroup>
             </div>
         );
     }
