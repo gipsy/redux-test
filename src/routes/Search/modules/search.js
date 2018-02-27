@@ -1,12 +1,3 @@
-// ------------------------------------
-// Constants
-// ------------------------------------
-
-
-
-// ------------------------------------
-// Actions
-// ------------------------------------
 export function itemsHasErrored(bool) {
   return {
     type: 'ITEMS_HAS_ERRORED',
@@ -46,38 +37,4 @@ export function itemsFetchData(url) {
       .then((items) => dispatch(itemsFetchDataSuccess(items)))
       .catch(() => dispatch(itemsHasErrored(true)));
   };
-}
-
-export const doubleAsync = () => {
-  return (dispatch, getState) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        dispatch({
-          type    : SEARCH_DOUBLE_ASYNC,
-          payload : getState().search
-        })
-        resolve()
-      }, 200)
-    })
-  }
-}
-
-export const actions = {
-  search,
-  doubleAsync
-}
-
-// ------------------------------------
-// Action Handlers
-// ------------------------------------
-
-
-// ------------------------------------
-// Reducer
-// ------------------------------------
-const initialState = 0
-export default function searchReducer (state = initialState, action) {
-  const handler = ACTION_HANDLERS[action.type]
-
-  return handler ? handler(state, action) : state
 }

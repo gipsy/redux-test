@@ -1,13 +1,20 @@
 import { connect } from 'react-redux'
 
-import Search from '../components/Search'
+import { itemsFetchData } from '../modules/search'
+import SearchResults from '../components/Search'
 
-const mapDispatchToProps = {
-  doubleAsync
-}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchData: (url) => dispatch(itemsFetchData(url))
+    };
+};
 
-const mapStateToProps = (state) => ({
-  search : state.search
-})
+const mapStateToProps = (state) => {
+    return {
+        items: state.items,
+        hasErrored: state.itemsHasErrored,
+        isLoading: state.itemsIsLoading
+    };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults)
