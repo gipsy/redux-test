@@ -14,6 +14,7 @@ export const Radio = props => {
                       value={key}
                       className="mh2"
                   />
+                  {' '}
                   {props.options[key]}
               </label>
           )
