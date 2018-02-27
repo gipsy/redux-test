@@ -13,7 +13,8 @@ const mapStateToProps = (state) => {
     return {
         items: state.items,
         hasErrored: state.itemsHasErrored,
-        isLoading: state.itemsIsLoading
+        isLoading: state.itemsIsLoading,
+        isProgressActive: state.progress.isActive,
     };
 };
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import uuidv1 from 'uuid'
+import ProgressBarProvider from 'react-redux-progress'
 
 class SearchResults extends Component {
     componentDidMount() {
@@ -18,6 +19,10 @@ class SearchResults extends Component {
 
         return (
             <div>
+                <ProgressBarProvider
+                  isActive={this.props.isLoading}
+                  className="progress-bar"
+                />
                 <ul>
                     {this.props.items.map((item) => (
                         <li key={uuidv1()}>
@@ -34,7 +39,7 @@ SearchResults.propTypes = {
     fetchData: PropTypes.func.isRequired,
     items: PropTypes.array.isRequired,
     hasErrored: PropTypes.bool.isRequired,
-    isLoading: PropTypes.bool.isRequired
+    isLoading: PropTypes.bool.isRequired,
 };
 
 export default SearchResults
