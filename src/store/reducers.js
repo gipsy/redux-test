@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 import locationReducer from './location'
-import { items, itemsHasErrored, itemsIsLoading } from './items';
+import progress from 'react-redux-progress/reducer'
+import { items, itemsHasErrored, itemsIsLoading } from './items'
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
+    progress,
     items,
     itemsHasErrored,
     itemsIsLoading,

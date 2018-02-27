@@ -5008,6 +5008,10 @@ react-element-to-jsx-string@^5.0.0:
     stringify-object "2.4.0"
     traverse "^0.6.6"
 
+react-redux-progress@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/react-redux-progress/-/react-redux-progress-0.4.3.tgz#79f384c2e4bebcc92632fa6ee2f955c07f2a34f7"
+
 react-redux@^5.0.4:
   version "5.0.7"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.7.tgz#0dc1076d9afb4670f993ffaef44b8f8c1155a4c8"

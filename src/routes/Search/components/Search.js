@@ -17,13 +17,15 @@ class SearchResults extends Component {
         }
 
         return (
-            <ul>
-                {this.props.items.map((item) => (
-                    <li key={uuidv1()}>
-                        {item.label}
-                    </li>
-                ))}
-            </ul>
+            <div>
+                <ul>
+                    {this.props.items.map((item) => (
+                        <li key={uuidv1()}>
+                            {item.home_team.country}
+                        </li>
+                    ))}
+                </ul>
+            </div>
         );
     }
 }
