@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import uuidv1 from 'uuid'
 
 class SearchResults extends Component {
     componentDidMount() {
@@ -18,7 +19,7 @@ class SearchResults extends Component {
         return (
             <ul>
                 {this.props.items.map((item) => (
-                    <li key={item.id}>
+                    <li key={uuidv1()}>
                         {item.label}
                     </li>
                 ))}
