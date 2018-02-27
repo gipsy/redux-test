@@ -2,11 +2,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import uuidv1 from 'uuid'
 import ProgressBarProvider from 'react-redux-progress'
+import { endpointUpdate } from '../modules/search'
 import {Form, FormGroup, Label, Input } from 'reactstrap'
 
 class SearchResults extends Component {
-    state = {
-      endpoint: this.props.endpoint,
+    constructor(props) {
+      super(props);
+      this.state = { endpoint: this.props.endpoint };
+      console.log(this.props)
     }
 
     componentDidMount() {
@@ -18,12 +21,14 @@ class SearchResults extends Component {
         }
     }
 
-    handleChange(value) {
-      this.setState({endpoint: value})
+    handleChange(endpoint) {
+      this.setState({endpoint})
+      this.props.endpointState(this.state.endpoint)
     }
 
     render() {
-        const { isLoading, hasErrored, handleSubmit, onSubmit } = this.props
+        const { isLoading, hasErrored, endpoint } = this.props
+        console.log(this.props)
 
         if (this.props.hasErrored) {
             return <p>Sorry! There was an error loading the items</p>
@@ -116,10 +121,10 @@ class SearchResults extends Component {
 
 SearchResults.propTypes = {
     fetchData: PropTypes.func.isRequired,
+    endpointState: PropTypes.func.isRequired,
     items: PropTypes.array.isRequired,
+    endpoint: PropTypes.string.isRequired,
     hasErrored: PropTypes.bool.isRequired,
-    isLoading: PropTypes.bool.isRequired,
-    endpoint: PropTypes.string.isRequired
 }
 
 export default SearchResults

@@ -20,6 +20,8 @@ export function itemsFetchDataSuccess(items) {
 }
 
 export function endpointUpdate(endpoint) {
+    console.log('endpount Update')
+    console.log(endpoint)
     return {
         type: 'ENDPOINT_UPDATE',
         endpoint
@@ -28,7 +30,6 @@ export function endpointUpdate(endpoint) {
 
 export function itemsFetchData(endpoint) {
     let url = ''
-    console.log(endpoint)
     switch (endpoint) {
       case 'matches_all':
           url = 'http://worldcup.sfg.io/matches'

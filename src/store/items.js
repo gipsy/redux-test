@@ -21,16 +21,18 @@ export function itemsIsLoading(state = false, action) {
 export function items(state = [], action) {
     switch (action.type) {
         case 'ITEMS_FETCH_DATA_SUCCESS':
-            return action.items
+            return (
+              action.items
+            )
 
         default:
             return state
     }
 }
 
-export function endpoint(state = [], action) {
+export function endpoint(action) {
     switch (action.type) {
-        case 'ENDPOINT_UPDATED':
+        case 'ENDPOINT_UPDATE':
             return action.endpoint
 
         default:

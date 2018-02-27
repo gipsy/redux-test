@@ -1,20 +1,21 @@
 import { connect } from 'react-redux'
 
-import { itemsFetchData } from '../modules/search'
+import { itemsFetchData, endpointUpdate } from '../modules/search'
 import SearchResults from '../components/Search'
 
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchData: (endpoint) => dispatch(itemsFetchData(endpoint)),
+        endpointState: (endpoint) => dispatch(endpointUpdate(endpoint))
     }
 }
 
 const mapStateToProps = (state) => {
     return {
         items: state.items,
+        endpoint: state.endpoint,
         hasErrored: state.itemsHasErrored,
         isLoading: state.itemsIsLoading,
-        endpoint: 'test'
     }
 }
 
