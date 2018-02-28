@@ -19,15 +19,12 @@ class Search extends Component {
         }
     }
 
-    handleEndpointChange(endpoint) {
-      // this.setState({endpoint})
-      this.props.endpointState(this.state.endpoint)
+    handleEndpointUpdate(evt) {
+        this.props.endpointUpdate(evt.target.value)
     }
 
     render() {
         const { isLoading, hasErrored, endpoint } = this.props
-        console.log(endpoint)
-        console.log(isLoading)
 
         if (this.props.hasErrored) {
             return <p>Sorry! There was an error loading the items</p>
@@ -52,7 +49,7 @@ class Search extends Component {
                             name="endpoint"
                             value="matches_all"
                             checked={endpoint === 'matches_all'}
-                            onChange={(value) => this.handleEndpointChange(value)}
+                            onChange={(evt) => this.handleEndpointUpdate(evt)}
                           />{' '}
                           All matches
                         </Label>
@@ -64,7 +61,7 @@ class Search extends Component {
                               name="endpoint"
                               value="matches_today"
                               checked={endpoint === 'matches_today'}
-                              onChange={(value) => this.handleEndpointChange(value)}
+                              onChange={(evt) => this.handleEndpointUpdate(evt)}
                             />{' '}
                               Today's matches
                         </Label>
@@ -76,7 +73,7 @@ class Search extends Component {
                               name="endpoint"
                               value="matches_current"
                               checked={endpoint === 'matches_current'}
-                              onChange={(value) => this.handleEndpointChange(value)}
+                              onChange={(evt) => this.handleEndpointUpdate(evt)}
                             />{' '}
                             Current matches
                         </Label>
@@ -88,7 +85,7 @@ class Search extends Component {
                               name="endpoint"
                               value="teams_result"
                               checked={endpoint === 'teams_result'}
-                              onChange={(value) => this.handleEndpointChange(value)}
+                              onChange={(evt) => this.handleEndpointUpdate(evt)}
                             />{' '}
                             Teams Results
                         </Label>
@@ -100,7 +97,7 @@ class Search extends Component {
                               name="endpoint"
                               value="teams_group_result"
                               checked={endpoint === 'teams_group_result'}
-                              onChange={(value) => this.handleEndpointChange(value)}
+                              onChange={(evt) => this.handleEndpointUpdate(evt)}
                             />{' '}
                             Teams Group Result
                         </Label>
@@ -120,7 +117,7 @@ class Search extends Component {
 
 Search.propTypes = {
     fetchData: PropTypes.func.isRequired,
-    endpointState: PropTypes.func.isRequired,
+    endpointUpdate: PropTypes.func.isRequired,
     items: PropTypes.array.isRequired,
     endpoint: PropTypes.string.isRequired,
     hasErrored: PropTypes.bool.isRequired,

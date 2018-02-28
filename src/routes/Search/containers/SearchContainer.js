@@ -6,7 +6,7 @@ import Search from '../components/Search'
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchData: (endpoint) => dispatch(itemsFetchData(endpoint)),
-        endpointState: (endpoint) => dispatch(endpointUpdate(endpoint))
+        endpointUpdate: (endpoint) => dispatch(endpointUpdate(endpoint))
     }
 }
 
