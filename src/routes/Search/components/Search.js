@@ -2,14 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import uuidv1 from 'uuid'
 import ProgressBarProvider from 'react-redux-progress'
-import { endpointUpdate } from '../modules/search'
 import {Form, FormGroup, Label, Input } from 'reactstrap'
 
-class SearchResults extends Component {
+class Search extends Component {
     constructor(props) {
       super(props);
       this.state = { endpoint: this.props.endpoint };
-      console.log(this.props)
     }
 
     componentDidMount() {
@@ -21,14 +19,15 @@ class SearchResults extends Component {
         }
     }
 
-    handleChange(endpoint) {
-      this.setState({endpoint})
+    handleEndpointChange(endpoint) {
+      // this.setState({endpoint})
       this.props.endpointState(this.state.endpoint)
     }
 
     render() {
         const { isLoading, hasErrored, endpoint } = this.props
-        console.log(this.props)
+        console.log(endpoint)
+        console.log(isLoading)
 
         if (this.props.hasErrored) {
             return <p>Sorry! There was an error loading the items</p>
@@ -52,8 +51,8 @@ class SearchResults extends Component {
                             type="radio"
                             name="endpoint"
                             value="matches_all"
-                            checked={this.state.endpoint === 'matches_all'}
-                            onChange={(value) => this.handleChange(value)}
+                            checked={endpoint === 'matches_all'}
+                            onChange={(value) => this.handleEndpointChange(value)}
                           />{' '}
                           All matches
                         </Label>
@@ -64,8 +63,8 @@ class SearchResults extends Component {
                               type="radio"
                               name="endpoint"
                               value="matches_today"
-                              checked={this.state.endpoint === 'matches_today'}
-                              onChange={(value) => this.handleChange(value)}
+                              checked={endpoint === 'matches_today'}
+                              onChange={(value) => this.handleEndpointChange(value)}
                             />{' '}
                               Today's matches
                         </Label>
@@ -76,8 +75,8 @@ class SearchResults extends Component {
                               type="radio"
                               name="endpoint"
                               value="matches_current"
-                              checked={this.state.endpoint === 'matches_current'}
-                              onChange={(value) => this.handleChange(value)}
+                              checked={endpoint === 'matches_current'}
+                              onChange={(value) => this.handleEndpointChange(value)}
                             />{' '}
                             Current matches
                         </Label>
@@ -88,8 +87,8 @@ class SearchResults extends Component {
                               type="radio"
                               name="endpoint"
                               value="teams_result"
-                              checked={this.state.endpoint === 'teams_result'}
-                              onChange={(value) => this.handleChange(value)}
+                              checked={endpoint === 'teams_result'}
+                              onChange={(value) => this.handleEndpointChange(value)}
                             />{' '}
                             Teams Results
                         </Label>
@@ -100,8 +99,8 @@ class SearchResults extends Component {
                               type="radio"
                               name="endpoint"
                               value="teams_group_result"
-                              checked={this.state.endpoint === 'teams_group_result'}
-                              onChange={(value) => this.handleChange(value)}
+                              checked={endpoint === 'teams_group_result'}
+                              onChange={(value) => this.handleEndpointChange(value)}
                             />{' '}
                             Teams Group Result
                         </Label>
@@ -119,7 +118,7 @@ class SearchResults extends Component {
     }
 }
 
-SearchResults.propTypes = {
+Search.propTypes = {
     fetchData: PropTypes.func.isRequired,
     endpointState: PropTypes.func.isRequired,
     items: PropTypes.array.isRequired,
@@ -127,4 +126,4 @@ SearchResults.propTypes = {
     hasErrored: PropTypes.bool.isRequired,
 }
 
-export default SearchResults
+export default Search

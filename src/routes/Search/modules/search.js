@@ -20,8 +20,6 @@ export function itemsFetchDataSuccess(items) {
 }
 
 export function endpointUpdate(endpoint) {
-    console.log('endpount Update')
-    console.log(endpoint)
     return {
         type: 'ENDPOINT_UPDATE',
         endpoint

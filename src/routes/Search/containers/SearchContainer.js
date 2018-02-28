@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import { itemsFetchData, endpointUpdate } from '../modules/search'
-import SearchResults from '../components/Search'
+import Search from '../components/Search'
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -19,4 +19,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResults)
+export default connect(mapStateToProps, mapDispatchToProps)(Search)
