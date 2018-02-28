@@ -131,7 +131,7 @@ class Search extends Component {
                                       value={this.props.country}
                                       onChange={(evt) => this.handleCountryUpdate(evt)}
                                     >
-                                      <option>All countries</option>
+                                      <option value="">All countries</option>
                                       <option value="USA">USA</option>
                                       <option value="CAN">Canada</option>
                                       <option value="MEX">Mexico</option>
