@@ -27,30 +27,15 @@ export function endpointUpdate(endpoint) {
 }
 
 export function itemsFetchData(endpoint) {
-    let url = ''
-    console.log(endpoint)
-    switch (endpoint) {
-      case 'matches_all':
-          url = 'http://worldcup.sfg.io/matches'
+    let url
 
-      case 'matches_today':
-          url = 'http://worldcup.sfg.io/matches/today'
-
-      case 'matches_current':
-          url = 'http://worldcup.sfg.io/matches/current'
-
-      case 'teams':
-          url = 'http://worldcup.sfg.io/teams'
-
-      case 'teams_group':
-          url = 'http://worldcup.sfg.io/group_results'
-
-      case 'teams_results':
-          url = 'http://worldcup.sfg.io/teams/results'
-
-      default:
-          url = 'http://worldcup.sfg.io/matches'
-    }
+    endpoint === 'matches_all'          ? url = 'http://worldcup.sfg.io/matches'
+    : endpoint === 'matches_today'      ? url = 'http://worldcup.sfg.io/matches/today'
+    : endpoint === 'matches_current'    ? url = 'http://worldcup.sfg.io/matches/current'
+    : endpoint === 'teams_result'       ? url = 'http://worldcup.sfg.io/teams'
+    : endpoint === 'teams_group_result' ? url = 'http://worldcup.sfg.io/group_results'
+    : endpoint === 'teams_results'      ? url = 'http://worldcup.sfg.io/teams/results'
+                                        : endpoint
 
     return (dispatch) => {
         dispatch(itemsIsLoading(true));
@@ -58,15 +43,15 @@ export function itemsFetchData(endpoint) {
         fetch(url)
           .then((response) => {
             if (!response.ok) {
-                throw Error(response.statusText);
+                throw Error(response.statusText)
             }
 
-            dispatch(itemsIsLoading(false));
+            dispatch(itemsIsLoading(false))
 
-            return response;
+            return response
           })
           .then((response) => response.json())
           .then((items) => dispatch(itemsFetchDataSuccess(items)))
-          .catch(() => dispatch(itemsHasErrored(true)));
+          .catch(() => dispatch(itemsHasErrored(true)))
     };
 }

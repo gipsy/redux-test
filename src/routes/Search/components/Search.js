@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import uuidv1 from 'uuid'
 import ProgressBarProvider from 'react-redux-progress'
-import {Form, FormGroup, Label, Input } from 'reactstrap'
+import {Form, FormGroup, Label, Input, Table } from 'reactstrap'
 
 class Search extends Component {
 
@@ -38,7 +38,7 @@ class Search extends Component {
                     className="progress-bar"
                 />
                 <FormGroup tag="fieldset">
-                    <legend>Radio Buttons</legend>
+                    <legend>Choose Worldcup Terms</legend>
                     <FormGroup check>
                         <Label check>
                           <Input
@@ -101,11 +101,26 @@ class Search extends Component {
                     </FormGroup>
                 </FormGroup>
                 <ul>
-                    {this.props.items.map((item) => (
-                        <li key={uuidv1()}>
-                            {item.home_team.country}
-                        </li>
-                    ))}
+                    <Table>
+                        <thead>
+                          <tr>
+                            <th>match number</th>
+                            <th>location</th>
+                            <th>datetime</th>
+                            <th>status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {this.props.items.map((item) => (
+                                <tr key={uuidv1()}>
+                                    <th scope="row>">{item.match_number}</th>
+                                    <th>{item.location}</th>
+                                    <th>{item.datetime}</th>
+                                    <th>{item.status}</th>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
                 </ul>
             </div>
         )
