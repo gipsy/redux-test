@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import uuidv1 from 'uuid'
+import * as moment from 'moment'
 import ProgressBarProvider from 'react-redux-progress'
 import {Form, FormGroup, Label, Input, Table } from 'reactstrap'
 
@@ -93,8 +94,8 @@ class Search extends Component {
                             <Input
                               type="radio"
                               name="endpoint"
-                              value="teams_group_result"
-                              checked={endpoint === 'teams_group_result'}
+                              value="group_results"
+                              checked={endpoint === 'group_results'}
                               onChange={(evt) => this.handleEndpointUpdate(evt)}
                             />{' '}
                             Teams Group Result
@@ -117,10 +118,10 @@ class Search extends Component {
                         <tbody>
                             {this.props.items.map((item) => (
                                 <tr key={uuidv1()}>
-                                    <td>{item.match_number}</td>
-                                    <td>{item.location}</td>
-                                    <td>{item.datetime}</td>
-                                    <td>{item.status}</td>
+                                    <td>{item.match_number || '—'}</td>
+                                    <td>{item.location || '—'}</td>
+                                    <td>{moment(item.datetime).format("LLLL") || '—'}</td>
+                                    <td>{item.status || '—'}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -142,10 +143,10 @@ class Search extends Component {
                         <tbody>
                             {this.props.items.map((item) => (
                                 <tr key={uuidv1()}>
-                                    <td>{item.match_number}</td>
-                                    <td>{item.location}</td>
-                                    <td>{item.datetime}</td>
-                                    <td>{item.status}</td>
+                                    <td>{item.match_number || '—'}</td>
+                                    <td>{item.location || '—'}</td>
+                                    <td>{moment(item.datetime).format("LLLL") || '—'}</td>
+                                    <td>{item.status || '—'}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -167,10 +168,10 @@ class Search extends Component {
                         <tbody>
                             {this.props.items.map((item) => (
                                 <tr key={uuidv1()}>
-                                    <td>{item.match_number}</td>
-                                    <td>{item.location}</td>
-                                    <td>{item.datetime}</td>
-                                    <td>{item.status}</td>
+                                    <td>{item.match_number || '—'}</td>
+                                    <td>{item.location || '—'}</td>
+                                    <td>{item.datetime || '—'}</td>
+                                    <td>{item.status || '—'}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -191,35 +192,46 @@ class Search extends Component {
                         <tbody>
                             {this.props.items.map((item) => (
                                 <tr key={uuidv1()}>
-                                    <td>{item.country}</td>
-                                    <td>{item.fifa_code}</td>
-                                    <td>{item.group_id}</td>
+                                    <td>{item.country || '—'}</td>
+                                    <td>{item.fifa_code || '—'}</td>
+                                    <td>{item.group_id || '—'}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </Table>
                 </div>}
 
-                { endpoint === 'teams_group_result' &&
+                { endpoint === 'group_results' &&
                 <div>
                     <h1>Teams Group</h1>
                     <Table>
                         <thead>
                           <tr>
-                            <th scope="row">team</th>
                             <th scope="row">country</th>
                             <th scope="row">fifa code</th>
-                            <th scope="row">points</th>
-                            <th scope="row">goal differential</th>
+                            <th scope="row">group id</th>
+                            <th scope="row">wins</th>
+                            <th scope="row">draws</th>
+                            <th scope="row">losses</th>
+                            <th scope="row">goals for</th>
+                            <th scope="row">goals against</th>
+                            <th scope="row">knocked out</th>
+                            <th scope="row">updated at</th>
                           </tr>
                         </thead>
                         <tbody>
                             {this.props.items.map((item) => (
                                 <tr key={uuidv1()}>
-                                    <td>{item.group}</td>
-                                    {/* <th scope="row">{item.group}</th> */}
-                                    {/* <th scope="row">{item.datetime}</th> */}
-                                    {/* <th scope="row">{item.status}</th> */}
+                                    <td>{item.country || '—'}</td>
+                                    <td>{item.fifa_code || '—'}</td>
+                                    <td>{item.group_id || '—'}</td>
+                                    <td>{item.wins || '—'}</td>
+                                    <td>{item.draws || '—'}</td>
+                                    <td>{item.losses || '—'}</td>
+                                    <td>{item.goals_for || '—'}</td>
+                                    <td>{item.goals_against || '—'}</td>
+                                    <td>{item.knocked_out || '—'}</td>
+                                    <td>{moment(item.updated_at).format("LLLL")}</td>
                                 </tr>
                             ))}
                         </tbody>

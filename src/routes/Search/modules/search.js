@@ -29,12 +29,12 @@ export function endpointUpdate(endpoint) {
 export function itemsFetchData(endpoint) {
     let url
 
-    endpoint === 'matches_all'          ? url = 'http://worldcup.sfg.io/matches'
-    : endpoint === 'matches_today'      ? url = 'http://worldcup.sfg.io/matches/today'
-    : endpoint === 'matches_current'    ? url = 'http://worldcup.sfg.io/matches/current'
-    : endpoint === 'teams_result'       ? url = 'http://worldcup.sfg.io/teams'
-    : endpoint === 'teams_group_result' ? url = 'http://worldcup.sfg.io/group_results'
-                                        : endpoint
+    endpoint === 'matches_all'           ? url = 'http://worldcup.sfg.io/matches'
+    : endpoint === 'matches_today'       ? url = 'http://worldcup.sfg.io/matches/today'
+    : endpoint === 'matches_current'     ? url = 'http://worldcup.sfg.io/matches/current'
+    : endpoint === 'teams_result'        ? url = 'http://worldcup.sfg.io/teams'
+    : endpoint === 'group_results' ? url = 'http://worldcup.sfg.io/group_results'
+                                         : endpoint
     return (dispatch) => {
         dispatch(itemsIsLoading(true));
 
