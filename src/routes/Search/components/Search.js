@@ -37,7 +37,6 @@ class Search extends Component {
             return <p>Loading…</p>
         }
 
-        console.log(endpoint)
         return (
             <div>
                 <ProgressBarProvider
@@ -113,7 +112,6 @@ class Search extends Component {
 
                     <FormGroup check>
                         <Label check>
-                            By Country
                             <Input
                               type="select"
                               name="fifa_code"
@@ -177,7 +175,12 @@ class Search extends Component {
 
                 { endpoint === 'matches/today' &&
                 <div>
+                    { !!this.props.items.length
+                    ?
                     <h1>Matches Today</h1>
+                    :
+                    <p className="search__no-matches">There is no Matches today</p>
+                    }
                     <Table>
                         <thead>
                           <tr>
@@ -187,8 +190,6 @@ class Search extends Component {
                             <th scope="row">status</th>
                           </tr>
                         </thead>
-                        { !!this.props.items.length
-                        ?
                         <tbody>
                             {this.props.items.map((item) => (
                                 <tr key={uuidv1()}>
@@ -199,15 +200,17 @@ class Search extends Component {
                                 </tr>
                             ))}
                         </tbody>
-                        :
-                        <h3 className="form__no-matches">There is no Matches today</h3>
-                        }
                     </Table>
                 </div>}
 
                 { endpoint === 'matches/current' &&
                 <div>
+                    { !!this.props.items.length
+                    ?
                     <h1>Matches Current</h1>
+                    :
+                    <p className="search__no-matches">There is no Matches currently</p>
+                    }
                     <Table>
                         <thead>
                           <tr>
@@ -232,7 +235,12 @@ class Search extends Component {
 
                 { endpoint === 'teams' &&
                 <div>
+                    { !!this.props.items.length
+                    ?
                     <h1>Teams All</h1>
+                    :
+                    <p className="search__no-matches">There is no Teams</p>
+                    }
                     <Table>
                         <thead>
                           <tr>
@@ -255,7 +263,12 @@ class Search extends Component {
 
                 { endpoint === 'group_results' &&
                 <div>
+                    { !!this.props.items.length
+                    ?
                     <h1>Teams Group</h1>
+                    :
+                    <p className="search__no-matches">There is no Groups</p>
+                    }
                     <Table>
                         <thead>
                           <tr>
