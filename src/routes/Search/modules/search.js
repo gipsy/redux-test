@@ -33,8 +33,8 @@ export function countryUpdate(country) {
     }
 }
 
-export function itemsFetchData(endpoint) {
-    let url = `http://worldcup.sfg.io/${endpoint}`
+export function itemsFetchData(endpoint, country) {
+    let url = `http://worldcup.sfg.io/${endpoint}/${country ? 'country?fifa_code=' + country : ''}`
 
     return (dispatch) => {
         dispatch(itemsIsLoading(true));
