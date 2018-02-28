@@ -5,17 +5,14 @@ import ProgressBarProvider from 'react-redux-progress'
 import {Form, FormGroup, Label, Input } from 'reactstrap'
 
 class Search extends Component {
-    constructor(props) {
-      super(props);
-      this.state = { endpoint: this.props.endpoint };
-    }
 
     componentDidMount() {
-        this.props.fetchData(this.state.endpoint)
+        this.props.fetchData(this.props.endpoint)
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.endpoint !== this.props.endpoint) {
+          this.props.fetchData(this.props.endpoint)
         }
     }
 
