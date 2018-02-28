@@ -128,7 +128,6 @@ class Search extends Component {
                                     <Input
                                       type="select"
                                       name="fifa_code"
-                                      defaultValue={'All countries'}
                                       value={this.props.country}
                                       onChange={(evt) => this.handleCountryUpdate(evt)}
                                     >
