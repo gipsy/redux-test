@@ -34,9 +34,7 @@ export function itemsFetchData(endpoint) {
     : endpoint === 'matches_current'    ? url = 'http://worldcup.sfg.io/matches/current'
     : endpoint === 'teams_result'       ? url = 'http://worldcup.sfg.io/teams'
     : endpoint === 'teams_group_result' ? url = 'http://worldcup.sfg.io/group_results'
-    : endpoint === 'teams_results'      ? url = 'http://worldcup.sfg.io/teams/results'
                                         : endpoint
-
     return (dispatch) => {
         dispatch(itemsIsLoading(true));
 

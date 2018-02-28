@@ -31,6 +31,7 @@ class Search extends Component {
             return <p>Loading…</p>
         }
 
+        console.log(endpoint)
         return (
             <div>
                 <ProgressBarProvider
@@ -100,28 +101,130 @@ class Search extends Component {
                         </Label>
                     </FormGroup>
                 </FormGroup>
-                <ul>
+
+                { endpoint === 'matches_all' &&
+                <div>
+                    <h1>Matches All</h1>
                     <Table>
                         <thead>
                           <tr>
-                            <th>match number</th>
-                            <th>location</th>
-                            <th>datetime</th>
-                            <th>status</th>
+                            <th scope="row">match number</th>
+                            <th scope="row">location</th>
+                            <th scope="row">datetime</th>
+                            <th scope="row">status</th>
                           </tr>
                         </thead>
                         <tbody>
                             {this.props.items.map((item) => (
                                 <tr key={uuidv1()}>
-                                    <th scope="row>">{item.match_number}</th>
-                                    <th>{item.location}</th>
-                                    <th>{item.datetime}</th>
-                                    <th>{item.status}</th>
+                                    <td>{item.match_number}</td>
+                                    <td>{item.location}</td>
+                                    <td>{item.datetime}</td>
+                                    <td>{item.status}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </Table>
-                </ul>
+                </div>}
+
+                { endpoint === 'matches_today' &&
+                <div>
+                    <h1>Matches Today</h1>
+                    <Table>
+                        <thead>
+                          <tr>
+                            <th scope="row">match number</th>
+                            <th scope="row">location</th>
+                            <th scope="row">datetime</th>
+                            <th scope="row">status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {this.props.items.map((item) => (
+                                <tr key={uuidv1()}>
+                                    <td>{item.match_number}</td>
+                                    <td>{item.location}</td>
+                                    <td>{item.datetime}</td>
+                                    <td>{item.status}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                </div>}
+
+                { endpoint === 'matches_current' &&
+                <div>
+                    <h1>Matches Current</h1>
+                    <Table>
+                        <thead>
+                          <tr>
+                            <th scope="row">match number</th>
+                            <th scope="row">location</th>
+                            <th scope="row">datetime</th>
+                            <th scope="row">status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {this.props.items.map((item) => (
+                                <tr key={uuidv1()}>
+                                    <td>{item.match_number}</td>
+                                    <td>{item.location}</td>
+                                    <td>{item.datetime}</td>
+                                    <td>{item.status}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                </div>}
+
+                { endpoint === 'teams_result' &&
+                <div>
+                    <h1>Teams All</h1>
+                    <Table>
+                        <thead>
+                          <tr>
+                            <th scope="row">country</th>
+                            <th scope="row">fifa code</th>
+                            <th scope="row">group id</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {this.props.items.map((item) => (
+                                <tr key={uuidv1()}>
+                                    <td>{item.country}</td>
+                                    <td>{item.fifa_code}</td>
+                                    <td>{item.group_id}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                </div>}
+
+                { endpoint === 'teams_group_result' &&
+                <div>
+                    <h1>Teams Group</h1>
+                    <Table>
+                        <thead>
+                          <tr>
+                            <th scope="row">team</th>
+                            <th scope="row">country</th>
+                            <th scope="row">fifa code</th>
+                            <th scope="row">points</th>
+                            <th scope="row">goal differential</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {this.props.items.map((item) => (
+                                <tr key={uuidv1()}>
+                                    <td>{item.group}</td>
+                                    {/* <th scope="row">{item.group}</th> */}
+                                    {/* <th scope="row">{item.datetime}</th> */}
+                                    {/* <th scope="row">{item.status}</th> */}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                </div>}
             </div>
         )
     }
