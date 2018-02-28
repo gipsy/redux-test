@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import uuidv1 from 'uuid'
 import * as moment from 'moment'
 import ProgressBarProvider from 'react-redux-progress'
-import {Form, FormGroup, Label, Input, Table, Container, Row, Col} from 'reactstrap'
+import {Form, FormGroup, Label, Input, Table, Container, Row, Col, Progress} from 'reactstrap'
 import './Search.scss'
 
 class Search extends Component {
@@ -38,16 +38,17 @@ class Search extends Component {
         }
 
         if (this.props.isLoading) {
-            return <p>Loading…</p>
+            return (
+                <div>
+                  <ProgressBarProvider isActive={isLoading} className="progress-bar" />
+                  <p>Loading...</p>
+                </div>
+            )
         }
 
         return (
             <Container>
                 <Row>
-                    <ProgressBarProvider
-                        isActive={isLoading}
-                        className="progress-bar"
-                    />
                     <Col xs="auto">
                         <FormGroup className="search__form-group" tag="fieldset">
                             <legend>Choose Worldcup Terms</legend>

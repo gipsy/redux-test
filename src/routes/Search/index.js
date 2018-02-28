@@ -9,7 +9,7 @@ export default (store) => ({
       const Search = require('./containers/SearchContainer').default
       const reducer = require('./modules/search').default
 
-      injectReducer(store, { key: 'search', reducer })
+      // injectReducer(store, { key: 'search', reducer })
 
       cb(null, Search)
 
