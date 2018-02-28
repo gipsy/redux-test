@@ -14,7 +14,7 @@ class Search extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.endpoint !== this.props.endpoint) {
-            this.props.fetchData(this.props.endpoint, this.props.country)
+            this.props.fetchData(this.props.endpoint)
         }
 
         if (prevProps.country != this.props.country) {
