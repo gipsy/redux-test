@@ -53,6 +53,7 @@ class Search extends Component {
                           All matches
                         </Label>
                     </FormGroup>
+
                     <FormGroup check>
                         <Label check>
                             <Input
@@ -65,6 +66,7 @@ class Search extends Component {
                               Today's matches
                         </Label>
                     </FormGroup>
+
                     <FormGroup check>
                         <Label check>
                             <Input
@@ -77,6 +79,7 @@ class Search extends Component {
                             Current matches
                         </Label>
                     </FormGroup>
+
                     <FormGroup check>
                         <Label check>
                             <Input
@@ -89,6 +92,7 @@ class Search extends Component {
                             Teams Results
                         </Label>
                     </FormGroup>
+
                     <FormGroup check>
                         <Label check>
                             <Input
@@ -99,6 +103,44 @@ class Search extends Component {
                               onChange={(evt) => this.handleEndpointUpdate(evt)}
                             />{' '}
                             Teams Group Result
+                        </Label>
+                    </FormGroup>
+
+                    <FormGroup check>
+                        <Label check>
+                            By Country
+                            <Input
+                              type="select"
+                              name="fifa_code"
+                              defaultValue={['All countries']}
+                              multiple
+                            >
+                              <option>All countries</option>
+                              <option value="USA">USA</option>
+                              <option value="CAN">Canada</option>
+                              <option value="MEX">Mexico</option>
+                              <option value="CRC">Costa Rica</option>
+                              <option value="COL">Colombia</option>
+                              <option value="ECU">Ecuador</option>
+                              <option value="BRA">Brazil</option>
+                              <option value="ENG">England</option>
+                              <option value="FRA">France</option>
+                              <option value="ESP">Spain</option>
+                              <option value="NOR">Norway</option>
+                              <option value="SWE">Sweden</option>
+                              <option value="NED">Netherlands</option>
+                              <option value="CMR">Cameroon</option>
+                              <option value="CIV">Côte d'Ivoire</option>
+                              <option value="JPN">Japan</option>
+                              <option value="SUI">Switzerland</option>
+                              <option value="NGA">Nigeria</option>
+                              <option value="GER">Germany</option>
+                              <option value="KOR">Korea</option>
+                              <option value="CHN">China</option>
+                              <option value="THA">Thailand</option>
+                              <option value="NZL">New Zealand</option>
+                              <option value="AUS">Australia</option>
+                            </Input>
                         </Label>
                     </FormGroup>
                 </FormGroup>
