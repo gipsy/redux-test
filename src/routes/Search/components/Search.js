@@ -129,6 +129,7 @@ class Search extends Component {
                                       type="select"
                                       name="fifa_code"
                                       defaultValue={'All countries'}
+                                      value={this.props.country}
                                       onChange={(evt) => this.handleCountryUpdate(evt)}
                                     >
                                       <option>All countries</option>
