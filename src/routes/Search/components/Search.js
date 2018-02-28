@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import uuidv1 from 'uuid'
 import * as moment from 'moment'
 import ProgressBarProvider from 'react-redux-progress'
-import {Form, FormGroup, Label, Input, Table, Container, Row, Col, Progress} from 'reactstrap'
+import {Form, FormGroup, Label, Input, Table, Container, Row, Col} from 'reactstrap'
 import './Search.scss'
 
 class Search extends Component {
