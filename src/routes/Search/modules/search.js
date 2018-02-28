@@ -26,15 +26,16 @@ export function endpointUpdate(endpoint) {
     }
 }
 
-export function itemsFetchData(endpoint) {
-    let url
+export function countryUpdate(country) {
+    return {
+        type: 'COUNTRY_UPDATE',
+        country
+    }
+}
 
-    endpoint === 'matches_all'           ? url = 'http://worldcup.sfg.io/matches'
-    : endpoint === 'matches_today'       ? url = 'http://worldcup.sfg.io/matches/today'
-    : endpoint === 'matches_current'     ? url = 'http://worldcup.sfg.io/matches/current'
-    : endpoint === 'teams_result'        ? url = 'http://worldcup.sfg.io/teams'
-    : endpoint === 'group_results' ? url = 'http://worldcup.sfg.io/group_results'
-                                         : endpoint
+export function itemsFetchData(endpoint) {
+    let url = `http://worldcup.sfg.io/${endpoint}`
+
     return (dispatch) => {
         dispatch(itemsIsLoading(true));
 

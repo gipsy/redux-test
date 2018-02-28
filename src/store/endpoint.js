@@ -1,4 +1,4 @@
-export function endpoint(state = 'matches_all', action) {
+export function endpoint(state = 'matches', action) {
     switch (action.type) {
         case 'ENDPOINT_UPDATE':
             return action.endpoint

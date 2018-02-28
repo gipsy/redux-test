@@ -4,6 +4,7 @@ import uuidv1 from 'uuid'
 import * as moment from 'moment'
 import ProgressBarProvider from 'react-redux-progress'
 import {Form, FormGroup, Label, Input, Table } from 'reactstrap'
+import './Search.scss'
 
 class Search extends Component {
 
@@ -19,6 +20,10 @@ class Search extends Component {
 
     handleEndpointUpdate(evt) {
         this.props.endpointUpdate(evt.target.value)
+    }
+
+    handleCountryUpdate(evt) {
+        this.props.countryUpdate(evt.target.value)
     }
 
     render() {
@@ -46,8 +51,8 @@ class Search extends Component {
                           <Input
                             type="radio"
                             name="endpoint"
-                            value="matches_all"
-                            checked={endpoint === 'matches_all'}
+                            value="matches"
+                            checked={endpoint === "matches"}
                             onChange={(evt) => this.handleEndpointUpdate(evt)}
                           />{' '}
                           All matches
@@ -59,8 +64,8 @@ class Search extends Component {
                             <Input
                               type="radio"
                               name="endpoint"
-                              value="matches_today"
-                              checked={endpoint === 'matches_today'}
+                              value="matches/today"
+                              checked={endpoint === 'matches/today'}
                               onChange={(evt) => this.handleEndpointUpdate(evt)}
                             />{' '}
                               Today's matches
@@ -72,8 +77,8 @@ class Search extends Component {
                             <Input
                               type="radio"
                               name="endpoint"
-                              value="matches_current"
-                              checked={endpoint === 'matches_current'}
+                              value="matches/current"
+                              checked={endpoint === 'matches/current'}
                               onChange={(evt) => this.handleEndpointUpdate(evt)}
                             />{' '}
                             Current matches
@@ -85,8 +90,8 @@ class Search extends Component {
                             <Input
                               type="radio"
                               name="endpoint"
-                              value="teams_result"
-                              checked={endpoint === 'teams_result'}
+                              value="teams"
+                              checked={endpoint === 'teams'}
                               onChange={(evt) => this.handleEndpointUpdate(evt)}
                             />{' '}
                             Teams Results
@@ -112,8 +117,8 @@ class Search extends Component {
                             <Input
                               type="select"
                               name="fifa_code"
-                              defaultValue={['All countries']}
-                              multiple
+                              defaultValue={'All countries'}
+                              onChange={(evt) => this.handleCountryUpdate(evt)}
                             >
                               <option>All countries</option>
                               <option value="USA">USA</option>
@@ -145,7 +150,7 @@ class Search extends Component {
                     </FormGroup>
                 </FormGroup>
 
-                { endpoint === 'matches_all' &&
+                { endpoint === 'matches' &&
                 <div>
                     <h1>Matches All</h1>
                     <Table>
@@ -170,7 +175,7 @@ class Search extends Component {
                     </Table>
                 </div>}
 
-                { endpoint === 'matches_today' &&
+                { endpoint === 'matches/today' &&
                 <div>
                     <h1>Matches Today</h1>
                     <Table>
@@ -182,6 +187,8 @@ class Search extends Component {
                             <th scope="row">status</th>
                           </tr>
                         </thead>
+                        { !!this.props.items.length
+                        ?
                         <tbody>
                             {this.props.items.map((item) => (
                                 <tr key={uuidv1()}>
@@ -192,10 +199,13 @@ class Search extends Component {
                                 </tr>
                             ))}
                         </tbody>
+                        :
+                        <h3 className="form__no-matches">There is no Matches today</h3>
+                        }
                     </Table>
                 </div>}
 
-                { endpoint === 'matches_current' &&
+                { endpoint === 'matches/current' &&
                 <div>
                     <h1>Matches Current</h1>
                     <Table>
@@ -220,7 +230,7 @@ class Search extends Component {
                     </Table>
                 </div>}
 
-                { endpoint === 'teams_result' &&
+                { endpoint === 'teams' &&
                 <div>
                     <h1>Teams All</h1>
                     <Table>
@@ -287,8 +297,10 @@ class Search extends Component {
 Search.propTypes = {
     fetchData: PropTypes.func.isRequired,
     endpointUpdate: PropTypes.func.isRequired,
+    countryUpdate: PropTypes.func.isRequired,
     items: PropTypes.array.isRequired,
     endpoint: PropTypes.string.isRequired,
+    country: PropTypes.string,
     hasErrored: PropTypes.bool.isRequired,
 }
 
