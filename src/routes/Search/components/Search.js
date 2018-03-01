@@ -36,7 +36,12 @@ class Search extends Component {
         const { isLoading, hasErrored, endpoint } = this.props
 
         if (this.props.hasErrored) {
-            return <p>Sorry! There was an error loading the items</p>
+            return (
+                <div>
+                    <p>Sorry! There was an error loading the items</p>
+                    <a href="/">Reload</a>
+                </div>
+            );
         }
 
         if (this.props.isLoading) {
